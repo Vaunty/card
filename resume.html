@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Resume — Matthew Ngoy</title>
-  <meta name="description" content="Matthew Ngoy — resume." />
+  <title>Matthew Ngoy</title>
+  <meta name="description" content="Matthew Ngoy — resumes and research abstract." />
   <meta name="theme-color" content="#0a0a0a" />
   <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 </head>
@@ -15,7 +15,7 @@
         <svg class="h-4 w-4" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 10H4M9 5l-5 5 5 5"/></svg>
       </a>
 
-      <div id="tabs" class="flex rounded-full border border-neutral-800 bg-neutral-900 p-1 text-xs font-medium" role="tablist" aria-label="Resume version"></div>
+      <div id="tabs" class="flex rounded-full border border-neutral-800 bg-neutral-900 p-1 text-xs font-medium" role="tablist" aria-label="Document"></div>
 
       <a id="download" download class="flex h-9 w-9 shrink-0 items-center justify-center rounded-full text-neutral-400 transition hover:bg-neutral-900 hover:text-emerald-400" aria-label="Download PDF">
         <svg class="h-4 w-4" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 3v10M5.5 9l4.5 4.5L14.5 9M4 17h12"/></svg>
@@ -28,6 +28,35 @@
     <p id="status" class="py-16 text-center text-sm text-neutral-500">Loading…</p>
   </main>
 
+  <template id="abstract">
+    <article class="rounded-2xl border border-neutral-800 bg-neutral-900 px-5 py-6 sm:px-8 sm:py-8">
+      <p class="font-mono text-[11px] uppercase tracking-widest text-emerald-400/80">Great Minds in STEM 2026 · Poster</p>
+      <h1 class="mt-3 text-xl font-semibold leading-snug tracking-tight">Where Is Gen Z Living? A County-Level Analysis of Young-Adult Concentration, Rental Prices, and Demographics Across the United States</h1>
+      <p class="mt-3 text-sm text-neutral-300">Matthew Ngoy, Pao-lien Wang</p>
+      <p class="text-sm text-neutral-500">Kean University, Department of Computer Science &amp; Technology, Union, NJ 07083</p>
+      <p class="mt-4 font-mono text-[11px] leading-relaxed text-neutral-500">Generation Z · County-level demographics · Pearson correlation · Housing affordability · Data visualization</p>
+
+      <div class="mt-6 space-y-4 border-t border-neutral-800 pt-6 text-[15px] leading-relaxed text-neutral-300">
+        <p>As rental costs rise nationwide, a question with direct consequences for urban planning, workforce development, and housing policy is where young adults are actually settling. Popular accounts hold that they cluster overwhelmingly in expensive, densely populated metropolitan hubs in pursuit of entry-level career opportunities [1]. That narrative is rarely tested against fine-grained geographic data.</p>
+        <p>Little county-level statistical evidence establishes whether young-adult concentration covaries with rental cost and population size, or whether comparable concentrations occur across price levels. State-level analysis cannot resolve this, because averaging within a state conceals variation between metropolitan and rural counties.</p>
+        <p>We hypothesized a strong positive correlation among young-adult concentration, county population, and median rent, assuming that young adults are drawn to large, high-cost urban centers despite the expense.</p>
+        <p>The primary objective was to aggregate ZIP-code demographic records to the county level and compute Pearson correlation coefficients across four attributes: total population, the percentage of residents aged 20 to 29 as the operational proxy for Generation Z, population-weighted mean rent, and population-weighted mean age. A secondary objective was a full-stack client-server application for interactive visualization.</p>
+        <p>Data came from the United States ZIP Codes Database, a commercial compilation of U.S. Census Bureau American Community Survey estimates [2]. ZIP-level records hosted on a Kean University MySQL server were aggregated into 3,114 county-level records covering 50 states and the District of Columbia by population-weighted averaging in SQL. ZIP codes reporting no rent were excluded from both the numerator and the denominator of the rent term to prevent downward bias, and validation queries confirmed sex percentages summed to 100 and all proportions fell within valid bounds. A PHP backend using PDO served the mart to a JavaScript client that computed Pearson r, the coefficient of determination, and 95 percent confidence intervals for all six pairs, rendering scatter plots with least-squares trendlines through the Google Charts API [3]. Min-max scaling to a 0 to 100 range was applied for axis comparability only; as a linear transform, it leaves r unchanged.</p>
+        <p>Youth share and mean age correlated strongly and negatively (r = -0.68, 95 percent CI -0.69 to -0.66), confirming the aggregation preserved county age structure. Population correlated moderately with rent (r = +0.47, CI +0.44 to +0.50, R-squared 0.22). Contrary to the hypothesis, youth share was only weakly associated with rent (r = +0.20, CI +0.17 to +0.24, R-squared 0.042) and with population (r = +0.17, CI +0.14 to +0.20). At n = 3,114, these weak coefficients are precisely estimated, so rent accounts for about four percent of the variance in county youth share. Washington, D.C. was an extreme outlier, combining the highest observed youth share, 19.1 percent against a 13 to 14 percent norm, with high rent.</p>
+        <p>County youth concentration is largely independent of rental cost. Comparable shares of residents aged 20 to 29 appear in inexpensive and expensive counties alike, so rent alone does not distinguish where young adults live. Because each county contributes equally to these aggregate relationships regardless of size, individual migration decisions cannot be inferred. Future work will add household income and educational attainment, apply rank-based and log-transformed correlation to address the right skew in county population, and use K-means clustering to profile county types.</p>
+      </div>
+
+      <div class="mt-6 border-t border-neutral-800 pt-5">
+        <h2 class="font-mono text-[11px] uppercase tracking-widest text-neutral-500">References</h2>
+        <ol class="mt-3 space-y-2 text-xs leading-relaxed text-neutral-500">
+          <li>[1] Brazil, N., &amp; Candipan, J. (2023). Millennials as a demographic bridge to diversity? Segregation and diversity of young adult neighborhoods. Center for Open Science. <a class="break-all underline hover:text-emerald-400" href="https://doi.org/10.31235/osf.io/4jbre" target="_blank" rel="noopener">https://doi.org/10.31235/osf.io/4jbre</a></li>
+          <li>[2] Simplemaps. (2024). United States ZIP codes database. <a class="break-all underline hover:text-emerald-400" href="https://simplemaps.com/data/us-zips" target="_blank" rel="noopener">https://simplemaps.com/data/us-zips</a></li>
+          <li>[3] Google Developers. (2022). Google Charts visualization API. <a class="break-all underline hover:text-emerald-400" href="https://developers.google.com/chart" target="_blank" rel="noopener">https://developers.google.com/chart</a></li>
+        </ol>
+      </div>
+    </article>
+  </template>
+
   <script type="module">
     import * as pdfjs from "https://cdn.jsdelivr.net/npm/pdfjs-dist@4.10.38/build/pdf.min.mjs";
     pdfjs.GlobalWorkerOptions.workerSrc = "https://cdn.jsdelivr.net/npm/pdfjs-dist@4.10.38/build/pdf.worker.min.mjs";
@@ -36,6 +65,8 @@
     const RESUMES = {
       industry: { label: "Industry", href: "resumes/Matthew_Ngoy_Resume_Industry.pdf" },
       research: { label: "Research", href: "resumes/Matthew_Ngoy_Resume_Research.pdf" },
+      // `template` shows the matching <template> as text instead of drawing the PDF; href is still the download.
+      abstract: { label: "Abstract", href: "papers/Ngoy_GMiS_Abstract_2026.pdf", template: "abstract", title: "Abstract" },
     };
 
     const tabs = document.getElementById("tabs");
@@ -45,7 +76,7 @@
     let current = 0;
 
     tabs.innerHTML = Object.entries(RESUMES).map(([key, r]) =>
-      `<button role="tab" data-key="${key}" class="rounded-full px-4 py-1.5 text-neutral-400 transition aria-selected:bg-white aria-selected:text-neutral-900">${r.label}</button>`).join("");
+      `<button role="tab" data-key="${key}" class="rounded-full px-3.5 py-1.5 text-neutral-400 transition aria-selected:bg-white aria-selected:text-neutral-900">${r.label}</button>`).join("");
     tabs.addEventListener("click", (e) => {
       const key = e.target.closest("button")?.dataset.key;
       if (key) show(key);
@@ -58,11 +89,17 @@
 
       for (const b of tabs.children) b.setAttribute("aria-selected", b.dataset.key === key);
       history.replaceState(null, "", `?v=${key}`);
-      document.title = `${resume.label} Resume — Matthew Ngoy`;
+      document.title = `${resume.title ?? resume.label + " Resume"} — Matthew Ngoy`;
       download.href = resume.href;
       pages.replaceChildren();
       status.textContent = "Loading…";
       status.hidden = false;
+
+      if (resume.template) {
+        pages.append(document.getElementById(resume.template).content.cloneNode(true));
+        status.hidden = true;
+        return;
+      }
 
       try {
         const pdf = await pdfjs.getDocument(resume.href).promise;

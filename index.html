@@ -40,10 +40,14 @@
 
   <script>
     // Edit these lists to change what the page says and links to.
+    // A nested list puts those links side by side on one row.
     const LINKS = [
       { label: "LinkedIn", note: "Connect with me", href: "https://www.linkedin.com/in/matthewngoy", primary: true },
-      { label: "Resume — Industry", note: "View or download", href: "resume.html?v=industry" },
-      { label: "Resume — Research", note: "View or download", href: "resume.html?v=research" },
+      [
+        { label: "Resume", note: "Industry", href: "resume.html?v=industry" },
+        { label: "Resume", note: "Research", href: "resume.html?v=research" },
+      ],
+      { label: "Research abstract", note: "Where Is Gen Z Living? · GMiS 2026", href: "resume.html?v=abstract" },
     ];
     const TAGS = ["red teaming", "AI safety", "IoT"];
 
@@ -55,14 +59,17 @@
 
     document.getElementById("tags").textContent = TAGS.join("  ·  ");
 
-    document.getElementById("links").innerHTML = LINKS.map((l, i) => `
+    const link = (l, i) => `
       <a href="${l.href}" ${l.href.startsWith("http") ? 'target="_blank" rel="noopener"' : ""} class="${base} ${l.primary ? primary : secondary}" style="animation-delay: ${0.1 * (i + 1)}s">
         <span>
           <span class="block text-sm font-medium">${l.label}</span>
           <span class="block text-xs opacity-60">${l.note}</span>
         </span>
         ${arrow}
-      </a>`).join("");
+      </a>`;
+
+    document.getElementById("links").innerHTML = LINKS.map((l, i) =>
+      Array.isArray(l) ? `<div class="grid grid-cols-2 gap-2.5">${l.map((x) => link(x, i)).join("")}</div>` : link(l, i)).join("");
   </script>
 </body>
 </html>
