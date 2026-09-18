@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>QR — Matthew Ngoy</title>
+  <meta name="robots" content="noindex" />
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <script src="https://cdn.jsdelivr.net/npm/qrcode-generator@1.4.4/qrcode.js"></script>
+  <style>
+    #qr svg { width: 100%; height: auto; display: block; }
+    @media print { .no-print { display: none; } body { background: white; } }
+  </style>
+</head>
+<body class="min-h-dvh bg-neutral-50 text-neutral-900 antialiased flex items-center justify-center p-6">
+  <main class="w-full max-w-xs text-center">
+    <div class="rounded-3xl border border-neutral-200 bg-white p-6">
+      <div id="qr"></div>
+      <p class="mt-4 text-sm font-medium tracking-tight">Matthew Ngoy</p>
+      <p class="text-xs text-neutral-500">LinkedIn · Resume</p>
+    </div>
+
+    <div class="no-print mt-6 space-y-3">
+      <input id="url" type="url" spellcheck="false" aria-label="URL the QR code points to"
+        class="w-full rounded-xl border border-neutral-200 bg-white px-4 py-2.5 text-xs text-neutral-600 outline-none focus:border-neutral-400" />
+      <div class="flex gap-3">
+        <button id="svg" class="flex-1 rounded-xl bg-neutral-900 px-4 py-2.5 text-xs font-medium text-white hover:bg-neutral-800">Download SVG</button>
+        <button id="png" class="flex-1 rounded-xl border border-neutral-200 bg-white px-4 py-2.5 text-xs font-medium hover:border-neutral-400">Download PNG</button>
+      </div>
+      <p id="warn" class="hidden text-xs text-amber-600">This is a local address — phones can't reach it. Deploy the site, then open this page there (or paste the live URL above).</p>
+    </div>
+  </main>
+
+  <script>
+    const input = document.getElementById("url");
+    const box = document.getElementById("qr");
+    const warn = document.getElementById("warn");
+
+    // Defaults to the landing page that sits next to this file.
+    input.value = new URL("./", location.href).href;
+
+    function render() {
+      const qr = qrcode(0, "M");
+      qr.addData(input.value.trim());
+      qr.make();
+      box.innerHTML = qr.createSvgTag({ cellSize: 8, margin: 0, scalable: true });
+      warn.classList.toggle("hidden", !/^(file:|https?:\/\/(localhost|127\.|192\.168\.))/.test(input.value));
+    }
+
+    function save(blob, name) {
+      const a = document.createElement("a");
+      a.href = URL.createObjectURL(blob);
+      a.download = name;
+      a.click();
+      URL.revokeObjectURL(a.href);
+    }
+
+    function svgSource() {
+      const svg = box.querySelector("svg").cloneNode(true);
+      svg.setAttribute("xmlns", "http://www.w3.org/2000/svg");
+      return new XMLSerializer().serializeToString(svg);
+    }
+
+    document.getElementById("svg").onclick = () =>
+      save(new Blob([svgSource()], { type: "image/svg+xml" }), "matthew-ngoy-qr.svg");
+
+    document.getElementById("png").onclick = () => {
+      const img = new Image();
+      img.onload = () => {
+        const size = 1024, pad = 64;
+        const c = document.createElement("canvas");
+        c.width = c.height = size;
+        const ctx = c.getContext("2d");
+        ctx.fillStyle = "#fff";
+        ctx.fillRect(0, 0, size, size);
+        ctx.imageSmoothingEnabled = false;
+        ctx.drawImage(img, pad, pad, size - pad * 2, size - pad * 2);
+        c.toBlob((b) => save(b, "matthew-ngoy-qr.png"));
+      };
+      img.src = "data:image/svg+xml;charset=utf-8," + encodeURIComponent(svgSource());
+    };
+
+    input.addEventListener("input", render);
+    render();
+  </script>
+</body>
+</html>

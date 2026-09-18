@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Matthew Ngoy</title>
+  <meta name="description" content="Matthew Ngoy — LinkedIn and resumes." />
+  <meta name="theme-color" content="#0a0a0a" />
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <style>
+    @keyframes rise { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+    .rise { animation: rise 0.5s ease-out both; }
+    @media (prefers-reduced-motion: reduce) { .rise { animation: none; } }
+  </style>
+</head>
+<body class="min-h-dvh bg-neutral-50 text-neutral-900 dark:bg-neutral-950 dark:text-neutral-100 antialiased flex items-center justify-center p-6">
+  <main class="w-full max-w-sm">
+    <header class="rise text-center mb-8">
+      <div class="mx-auto mb-5 flex h-16 w-16 items-center justify-center rounded-full bg-neutral-900 text-lg font-medium tracking-wide text-white dark:bg-white dark:text-neutral-900">MN</div>
+      <h1 class="text-2xl font-semibold tracking-tight">Matthew Ngoy</h1>
+      <p class="mt-1 text-sm text-neutral-500 dark:text-neutral-400">Computer Science, Cybersecurity · Kean University</p>
+    </header>
+
+    <nav id="links" class="space-y-3" aria-label="Links"></nav>
+
+    <footer class="rise mt-8 flex justify-center gap-5 text-xs text-neutral-400 dark:text-neutral-500" style="animation-delay: 0.4s">
+      <a class="transition-colors hover:text-neutral-900 dark:hover:text-neutral-100" href="mailto:ngoym@kean.edu">ngoym@kean.edu</a>
+      <a class="transition-colors hover:text-neutral-900 dark:hover:text-neutral-100" href="https://github.com/Vaunty" target="_blank" rel="noopener">GitHub</a>
+    </footer>
+  </main>
+
+  <script>
+    // Edit this list to change what the page links to.
+    const LINKS = [
+      { label: "LinkedIn", note: "Connect with me", href: "https://www.linkedin.com/in/matthewngoy", primary: true },
+      { label: "Resume — Industry", note: "PDF", href: "resumes/Matthew_Ngoy_Resume_Industry.pdf" },
+      { label: "Resume — Research", note: "PDF", href: "resumes/Matthew_Ngoy_Resume_Research.pdf" },
+    ];
+
+    const arrow = '<svg class="h-4 w-4 opacity-40 transition-transform group-hover:translate-x-0.5 group-hover:opacity-100" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10h12M11 5l5 5-5 5"/></svg>';
+
+    const base = "rise group flex items-center justify-between rounded-2xl px-5 py-4 transition active:scale-[0.98]";
+    const primary = "bg-neutral-900 text-white hover:bg-neutral-800 dark:bg-white dark:text-neutral-900 dark:hover:bg-neutral-200";
+    const secondary = "border border-neutral-200 bg-white hover:border-neutral-400 dark:border-neutral-800 dark:bg-neutral-900 dark:hover:border-neutral-600";
+
+    document.getElementById("links").innerHTML = LINKS.map((l, i) => `
+      <a href="${l.href}" target="_blank" rel="noopener" class="${base} ${l.primary ? primary : secondary}" style="animation-delay: ${0.1 * (i + 1)}s">
+        <span>
+          <span class="block text-sm font-medium">${l.label}</span>
+          <span class="block text-xs opacity-60">${l.note}</span>
+        </span>
+        ${arrow}
+      </a>`).join("");
+  </script>
+</body>
+</html>
