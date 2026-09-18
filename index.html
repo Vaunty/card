@@ -14,30 +14,25 @@
     @media (prefers-reduced-motion: reduce) { .rise { animation: none; } }
   </style>
 </head>
-<body class="relative min-h-dvh bg-neutral-950 text-neutral-100 antialiased flex items-center justify-center px-6 py-12">
+<body class="relative min-h-dvh bg-neutral-950 text-neutral-100 antialiased flex items-center justify-center px-6 py-5">
   <div class="glow pointer-events-none fixed inset-0" aria-hidden="true"></div>
 
   <main class="relative w-full max-w-sm">
-    <header class="rise text-center mb-8">
-      <img src="matthew.jpg" alt="Matthew Ngoy" width="96" height="96" class="mx-auto mb-5 h-24 w-24 rounded-full object-cover ring-1 ring-emerald-400/30 ring-offset-4 ring-offset-neutral-950" />
+    <header class="rise text-center mb-5">
+      <img src="matthew.jpg" alt="Matthew Ngoy" width="80" height="80" class="mx-auto mb-3 h-20 w-20 rounded-full object-cover ring-1 ring-emerald-400/30 ring-offset-4 ring-offset-neutral-950" />
       <h1 class="text-2xl font-semibold tracking-tight">Matthew Ngoy</h1>
-      <p class="mt-1 text-sm text-neutral-400">Computer Science, Cybersecurity · Kean University</p>
-      <p id="tags" class="mt-3 font-mono text-[11px] tracking-wide text-neutral-500"></p>
+      <p class="mt-0.5 text-sm text-neutral-400">Computer Science, Cybersecurity · Kean University</p>
+      <p id="tags" class="mt-2 font-mono text-[11px] tracking-wide text-neutral-500"></p>
     </header>
 
-    <nav id="links" class="space-y-3" aria-label="Links"></nav>
+    <nav id="links" class="space-y-2.5" aria-label="Links"></nav>
 
-    <section class="rise mt-8 border-t border-neutral-800/80 pt-6" style="animation-delay: 0.4s" aria-labelledby="about">
-      <h2 id="about" class="font-mono text-[11px] uppercase tracking-widest text-neutral-500">About</h2>
-      <p class="mt-3 text-sm leading-relaxed text-neutral-400">
-        I'm a computer science student at Kean University, graduating in 2027. Most of my work comes down to finding out how systems break. At Kean's Center for Cybersecurity I helped build a clearinghouse of nonprofit cyber incidents and taught IoT security to high school students, and my research is on red-teaming and evaluating AI systems. I also TA and serve as secretary of Kean's WiCyS chapter.
-      </p>
-      <p class="mt-3 text-sm leading-relaxed text-neutral-200">
-        Right now I'm looking for a summer 2027 internship in security or software engineering.
-      </p>
-    </section>
+    <p class="rise mt-5 border-t border-neutral-800/80 pt-4 text-[13px] leading-snug text-neutral-400" style="animation-delay: 0.4s">
+      I'm a CS student at Kean University who likes finding out how systems break. I do cybersecurity research, red-team AI systems, and TA on the side.
+      <span class="text-neutral-200">Looking for a summer 2027 internship in security or software engineering.</span>
+    </p>
 
-    <footer class="rise mt-8 flex justify-center gap-5 text-xs text-neutral-500" style="animation-delay: 0.5s">
+    <footer class="rise mt-5 flex justify-center gap-5 text-xs text-neutral-500" style="animation-delay: 0.5s">
       <a class="transition-colors hover:text-emerald-400" href="mailto:ngoym@kean.edu">ngoym@kean.edu</a>
       <a class="transition-colors hover:text-emerald-400" href="https://github.com/Vaunty" target="_blank" rel="noopener">GitHub</a>
     </footer>
@@ -54,7 +49,7 @@
 
     const arrow = '<svg class="h-4 w-4 opacity-40 transition group-hover:translate-x-0.5 group-hover:opacity-100" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10h12M11 5l5 5-5 5"/></svg>';
 
-    const base = "rise group flex items-center justify-between rounded-2xl px-5 py-4 transition active:scale-[0.98]";
+    const base = "rise group flex items-center justify-between rounded-2xl px-5 py-3 transition active:scale-[0.98]";
     const primary = "bg-white text-neutral-900 hover:bg-neutral-200";
     const secondary = "border border-neutral-800 bg-neutral-900 hover:border-emerald-400/40";
 
