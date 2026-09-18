@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Resume — Matthew Ngoy</title>
+  <meta name="description" content="Matthew Ngoy — resume." />
+  <meta name="theme-color" content="#0a0a0a" />
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+<body class="min-h-dvh bg-neutral-950 text-neutral-100 antialiased">
+  <header class="sticky top-0 z-10 border-b border-neutral-800/80 bg-neutral-950/80 backdrop-blur">
+    <div class="mx-auto flex max-w-3xl items-center justify-between gap-3 px-4 py-3">
+      <a href="./" class="flex h-9 w-9 shrink-0 items-center justify-center rounded-full text-neutral-400 transition hover:bg-neutral-900 hover:text-neutral-100" aria-label="Back">
+        <svg class="h-4 w-4" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 10H4M9 5l-5 5 5 5"/></svg>
+      </a>
+
+      <div id="tabs" class="flex rounded-full border border-neutral-800 bg-neutral-900 p-1 text-xs font-medium" role="tablist" aria-label="Resume version"></div>
+
+      <a id="download" download class="flex h-9 w-9 shrink-0 items-center justify-center rounded-full text-neutral-400 transition hover:bg-neutral-900 hover:text-emerald-400" aria-label="Download PDF">
+        <svg class="h-4 w-4" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 3v10M5.5 9l4.5 4.5L14.5 9M4 17h12"/></svg>
+      </a>
+    </div>
+  </header>
+
+  <main class="mx-auto max-w-3xl px-3 py-4 sm:px-4 sm:py-6">
+    <div id="pages" class="space-y-4"></div>
+    <p id="status" class="py-16 text-center text-sm text-neutral-500">Loading…</p>
+  </main>
+
+  <script type="module">
+    import * as pdfjs from "https://cdn.jsdelivr.net/npm/pdfjs-dist@4.10.38/build/pdf.min.mjs";
+    pdfjs.GlobalWorkerOptions.workerSrc = "https://cdn.jsdelivr.net/npm/pdfjs-dist@4.10.38/build/pdf.worker.min.mjs";
+
+    // Keep in sync with the links in index.html.
+    const RESUMES = {
+      industry: { label: "Industry", href: "resumes/Matthew_Ngoy_Resume_Industry.pdf" },
+      research: { label: "Research", href: "resumes/Matthew_Ngoy_Resume_Research.pdf" },
+    };
+
+    const tabs = document.getElementById("tabs");
+    const pages = document.getElementById("pages");
+    const status = document.getElementById("status");
+    const download = document.getElementById("download");
+    let current = 0;
+
+    tabs.innerHTML = Object.entries(RESUMES).map(([key, r]) =>
+      `<button role="tab" data-key="${key}" class="rounded-full px-4 py-1.5 text-neutral-400 transition aria-selected:bg-white aria-selected:text-neutral-900">${r.label}</button>`).join("");
+    tabs.addEventListener("click", (e) => {
+      const key = e.target.closest("button")?.dataset.key;
+      if (key) show(key);
+    });
+
+    async function show(key) {
+      const resume = RESUMES[key] ?? RESUMES.industry;
+      key = RESUMES[key] ? key : "industry";
+      const run = ++current;
+
+      for (const b of tabs.children) b.setAttribute("aria-selected", b.dataset.key === key);
+      history.replaceState(null, "", `?v=${key}`);
+      document.title = `${resume.label} Resume — Matthew Ngoy`;
+      download.href = resume.href;
+      pages.replaceChildren();
+      status.textContent = "Loading…";
+      status.hidden = false;
+
+      try {
+        const pdf = await pdfjs.getDocument(resume.href).promise;
+        // Render above screen resolution so pinch-zoom stays sharp.
+        const density = Math.min(Math.max(devicePixelRatio || 1, 2), 3);
+        for (let n = 1; n <= pdf.numPages; n++) {
+          const page = await pdf.getPage(n);
+          if (run !== current) return;
+          const canvas = document.createElement("canvas");
+          canvas.className = "block w-full rounded-lg bg-white shadow-lg shadow-black/40";
+          pages.append(canvas);
+          const viewport = page.getViewport({ scale: (canvas.clientWidth * density) / page.getViewport({ scale: 1 }).width });
+          canvas.width = viewport.width;
+          canvas.height = viewport.height;
+          await page.render({ canvasContext: canvas.getContext("2d"), viewport }).promise;
+          status.hidden = true;
+        }
+      } catch (e) {
+        if (run !== current) return;
+        status.innerHTML = `Couldn't display the preview. <a class="text-emerald-400 underline" href="${resume.href}">Open the PDF</a> instead.`;
+      }
+    }
+
+    show(new URLSearchParams(location.search).get("v"));
+  </script>
+</body>
+</html>
