@@ -4,62 +4,32 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Matthew Ngoy</title>
-  <meta name="description" content="Matthew Ngoy — cybersecurity, AI red-teaming, LinkedIn and resumes." />
+  <meta name="description" content="Matthew Ngoy — LinkedIn and resumes." />
   <meta name="theme-color" content="#0a0a0a" />
   <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
   <style>
     @keyframes rise { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
-    @keyframes blink { 50% { opacity: 0; } }
     .rise { animation: rise 0.5s ease-out both; }
-    .cursor { animation: blink 1s steps(1) infinite; }
-    .grid-bg {
-      background-image:
-        linear-gradient(to right, rgb(255 255 255 / 0.04) 1px, transparent 1px),
-        linear-gradient(to bottom, rgb(255 255 255 / 0.04) 1px, transparent 1px);
-      background-size: 32px 32px;
-      mask-image: radial-gradient(ellipse at 50% 30%, black 20%, transparent 75%);
-    }
-    .glow { background: radial-gradient(circle at 50% 0%, rgb(52 211 153 / 0.14), transparent 60%); }
-    @media (prefers-reduced-motion: reduce) { .rise, .cursor { animation: none; } }
+    .glow { background: radial-gradient(circle at 50% 0%, rgb(52 211 153 / 0.08), transparent 55%); }
+    @media (prefers-reduced-motion: reduce) { .rise { animation: none; } }
   </style>
 </head>
-<body class="relative min-h-dvh overflow-x-hidden bg-neutral-950 text-neutral-100 antialiased flex items-center justify-center p-6">
-  <div class="grid-bg pointer-events-none fixed inset-0" aria-hidden="true"></div>
+<body class="relative min-h-dvh bg-neutral-950 text-neutral-100 antialiased flex items-center justify-center p-6">
   <div class="glow pointer-events-none fixed inset-0" aria-hidden="true"></div>
 
   <main class="relative w-full max-w-sm">
-    <header class="rise mb-8">
-      <p class="mb-6 font-mono text-xs text-neutral-500"><span class="text-emerald-400">matthew@kean</span>:~$ whoami</p>
-
-      <div class="flex items-center gap-4">
-        <div class="relative flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-neutral-900 font-mono text-base font-medium text-emerald-400 ring-1 ring-emerald-400/30">
-          MN
-          <span class="absolute -right-1 -top-1 flex h-3 w-3" aria-hidden="true">
-            <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-60 motion-reduce:hidden"></span>
-            <span class="relative inline-flex h-3 w-3 rounded-full bg-emerald-400 ring-2 ring-neutral-950"></span>
-          </span>
-        </div>
-        <div>
-          <h1 class="text-2xl font-semibold tracking-tight">Matthew Ngoy</h1>
-          <p class="text-sm text-neutral-400">CS, Cybersecurity · Kean University</p>
-        </div>
-      </div>
-
-      <p class="mt-5 h-5 font-mono text-sm text-neutral-300" aria-live="off">
-        <span class="text-emerald-400">&gt;</span> <span id="typed"></span><span class="cursor text-emerald-400">▍</span>
-      </p>
-
-      <ul id="tags" class="mt-5 flex flex-wrap gap-2" aria-label="Interests"></ul>
+    <header class="rise text-center mb-8">
+      <div class="mx-auto mb-5 flex h-16 w-16 items-center justify-center rounded-full bg-neutral-900 text-lg font-medium tracking-wide text-emerald-400 ring-1 ring-emerald-400/25">MN</div>
+      <h1 class="text-2xl font-semibold tracking-tight">Matthew Ngoy</h1>
+      <p class="mt-1 text-sm text-neutral-400">Computer Science, Cybersecurity · Kean University</p>
+      <p id="tags" class="mt-3 font-mono text-[11px] tracking-wide text-neutral-500"></p>
     </header>
 
     <nav id="links" class="space-y-3" aria-label="Links"></nav>
 
-    <footer class="rise mt-8 space-y-3 text-center" style="animation-delay: 0.5s">
-      <p class="font-mono text-[11px] text-neutral-600">NSF IUSE Scholar · WiCyS Secretary · UPE</p>
-      <div class="flex justify-center gap-5 text-xs text-neutral-500">
-        <a class="transition-colors hover:text-emerald-400" href="mailto:ngoym@kean.edu">ngoym@kean.edu</a>
-        <a class="transition-colors hover:text-emerald-400" href="https://github.com/Vaunty" target="_blank" rel="noopener">github/Vaunty</a>
-      </div>
+    <footer class="rise mt-8 flex justify-center gap-5 text-xs text-neutral-500" style="animation-delay: 0.4s">
+      <a class="transition-colors hover:text-emerald-400" href="mailto:ngoym@kean.edu">ngoym@kean.edu</a>
+      <a class="transition-colors hover:text-emerald-400" href="https://github.com/Vaunty" target="_blank" rel="noopener">GitHub</a>
     </footer>
   </main>
 
@@ -70,51 +40,24 @@
       { label: "Resume — Industry", note: "PDF", href: "resumes/Matthew_Ngoy_Resume_Industry.pdf" },
       { label: "Resume — Research", note: "PDF", href: "resumes/Matthew_Ngoy_Resume_Research.pdf" },
     ];
-    const LINES = [
-      "red-teaming AI systems",
-      "cybersecurity research @ Kean",
-      "building IoT security labs",
-      "teaching data structures + SQL",
-    ];
-    const TAGS = ["Red Teaming", "AI Safety", "OSINT", "IoT", "Teaching"];
+    const TAGS = ["red teaming", "AI safety", "IoT"];
 
     const arrow = '<svg class="h-4 w-4 opacity-40 transition group-hover:translate-x-0.5 group-hover:opacity-100" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10h12M11 5l5 5-5 5"/></svg>';
 
-    const base = "rise group flex items-center gap-4 rounded-2xl px-5 py-4 transition active:scale-[0.98]";
-    const primary = "bg-emerald-400 text-neutral-950 hover:bg-emerald-300 shadow-[0_0_32px_-8px_rgb(52_211_153/0.6)]";
-    const secondary = "border border-neutral-800 bg-neutral-900/70 backdrop-blur hover:border-emerald-400/50 hover:text-emerald-50";
+    const base = "rise group flex items-center justify-between rounded-2xl px-5 py-4 transition active:scale-[0.98]";
+    const primary = "bg-white text-neutral-900 hover:bg-neutral-200";
+    const secondary = "border border-neutral-800 bg-neutral-900 hover:border-emerald-400/40";
 
-    document.getElementById("tags").innerHTML = TAGS.map((t) =>
-      `<li class="rounded-full border border-neutral-800 bg-neutral-900/60 px-2.5 py-1 font-mono text-[11px] text-neutral-400">${t}</li>`).join("");
+    document.getElementById("tags").textContent = TAGS.join("  ·  ");
 
     document.getElementById("links").innerHTML = LINKS.map((l, i) => `
       <a href="${l.href}" target="_blank" rel="noopener" class="${base} ${l.primary ? primary : secondary}" style="animation-delay: ${0.1 * (i + 1)}s">
-        <span class="font-mono text-xs ${l.primary ? "opacity-60" : "text-emerald-400/70"}">0${i + 1}</span>
-        <span class="flex-1">
+        <span>
           <span class="block text-sm font-medium">${l.label}</span>
           <span class="block text-xs opacity-60">${l.note}</span>
         </span>
         ${arrow}
       </a>`).join("");
-
-    // Typewriter: type a line, pause, erase, move to the next.
-    const typed = document.getElementById("typed");
-    if (matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      typed.textContent = LINES[0];
-    } else {
-      let line = 0, pos = 0, erasing = false;
-      (function tick() {
-        const text = LINES[line];
-        pos += erasing ? -1 : 1;
-        typed.textContent = text.slice(0, pos);
-        let delay = erasing ? 25 : 55;
-        if (!erasing && pos === text.length) { erasing = true; delay = 1600; }
-        else if (erasing && pos === 0) { erasing = false; line = (line + 1) % LINES.length; delay = 350; }
-        setTimeout(tick, delay);
-      })();
-    }
-
-    console.log("%cYou checked the console. Good instinct — we should talk.\n%cngoym@kean.edu", "color:#34d399;font:600 13px monospace", "color:#a3a3a3;font:12px monospace");
   </script>
 </body>
 </html>
