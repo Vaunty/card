@@ -14,7 +14,7 @@
     @media (prefers-reduced-motion: reduce) { .rise { animation: none; } }
   </style>
 </head>
-<body class="relative min-h-dvh bg-neutral-950 text-neutral-100 antialiased flex items-center justify-center p-6">
+<body class="relative min-h-dvh bg-neutral-950 text-neutral-100 antialiased flex items-center justify-center px-6 py-12">
   <div class="glow pointer-events-none fixed inset-0" aria-hidden="true"></div>
 
   <main class="relative w-full max-w-sm">
@@ -27,7 +27,17 @@
 
     <nav id="links" class="space-y-3" aria-label="Links"></nav>
 
-    <footer class="rise mt-8 flex justify-center gap-5 text-xs text-neutral-500" style="animation-delay: 0.4s">
+    <section class="rise mt-8 border-t border-neutral-800/80 pt-6" style="animation-delay: 0.4s" aria-labelledby="about">
+      <h2 id="about" class="font-mono text-[11px] uppercase tracking-widest text-neutral-500">About</h2>
+      <p class="mt-3 text-sm leading-relaxed text-neutral-400">
+        I'm a computer science student at Kean University, graduating in 2027. Most of my work comes down to finding out how systems break. At Kean's Center for Cybersecurity I helped build a clearinghouse of nonprofit cyber incidents and taught IoT security to high school students, and my research is on red-teaming and evaluating AI systems. I also TA and serve as secretary of Kean's WiCyS chapter.
+      </p>
+      <p class="mt-3 text-sm leading-relaxed text-neutral-200">
+        Right now I'm looking for a summer 2027 internship in security or software engineering.
+      </p>
+    </section>
+
+    <footer class="rise mt-8 flex justify-center gap-5 text-xs text-neutral-500" style="animation-delay: 0.5s">
       <a class="transition-colors hover:text-emerald-400" href="mailto:ngoym@kean.edu">ngoym@kean.edu</a>
       <a class="transition-colors hover:text-emerald-400" href="https://github.com/Vaunty" target="_blank" rel="noopener">GitHub</a>
     </footer>
