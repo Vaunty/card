@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Matthew Ngoy</title>
-  <meta name="description" content="Matthew Ngoy — resumes and research abstract." />
+  <meta name="description" content="Matthew Ngoy — resumes." />
   <meta name="theme-color" content="#0a0a0a" />
   <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
   <style>
@@ -45,7 +45,6 @@
     const RESUMES = {
       industry: { label: "Industry", href: "resumes/Matthew_Ngoy_Resume_Industry.pdf" },
       research: { label: "Research", href: "resumes/Matthew_Ngoy_Resume_Research.pdf" },
-      abstract: { label: "Abstract", href: "papers/Ngoy_GMiS_Abstract_2026.pdf", title: "Abstract" },
     };
 
     const tabs = document.getElementById("tabs");
@@ -61,22 +60,6 @@
       if (key) show(key);
     });
 
-    // A page that is mostly empty (like the last page of the abstract) is cut off below its content.
-    function trimBlankBottom(canvas) {
-      const ctx = canvas.getContext("2d");
-      const { width, height } = canvas;
-      const data = ctx.getImageData(0, 0, width, height).data;
-      let last = 0;
-      for (let y = height - 1; y > 0 && !last; y--)
-        for (let x = 0; x < width; x += 4)
-          if (data[(y * width + x) * 4] < 200) { last = y; break; }
-      const keep = Math.min(height, last + Math.round(height * 0.08));
-      if (keep > height * 0.6) return;
-      const kept = ctx.getImageData(0, 0, width, keep);
-      canvas.height = keep;
-      ctx.putImageData(kept, 0, 0);
-    }
-
     async function show(key) {
       const resume = RESUMES[key] ?? RESUMES.industry;
       key = RESUMES[key] ? key : "industry";
@@ -84,7 +67,7 @@
 
       for (const b of tabs.children) b.setAttribute("aria-selected", b.dataset.key === key);
       history.replaceState(null, "", `?v=${key}`);
-      document.title = `${resume.title ?? resume.label + " Resume"} — Matthew Ngoy`;
+      document.title = `${resume.label} Resume — Matthew Ngoy`;
       download.href = resume.href;
       pages.replaceChildren();
       status.textContent = "Loading…";
@@ -104,7 +87,6 @@
           canvas.width = viewport.width;
           canvas.height = viewport.height;
           await page.render({ canvasContext: canvas.getContext("2d"), viewport }).promise;
-          trimBlankBottom(canvas);
           status.hidden = true;
         }
       } catch (e) {
