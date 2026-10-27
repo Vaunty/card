@@ -34,7 +34,7 @@
 \titleformat{\section}{
   \bfseries\scshape\raggedright\large
 }{}{0em}{}[\color{black}\titlerule]
-\titlespacing*{\section}{0pt}{3pt}{2pt}
+\titlespacing*{\section}{0pt}{2pt}{1pt}
 
 \pdfgentounicode=1
 
@@ -59,10 +59,10 @@
 
 \renewcommand\labelitemii{$\vcenter{\hbox{\tiny$\bullet$}}$}
 
-\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=0.15in, label={}, topsep=0pt, partopsep=0pt, itemsep=1pt]}
+\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=0.15in, label={}, topsep=0pt, partopsep=0pt, itemsep=0pt]}
 \newcommand{\resumeSubHeadingListEnd}{\end{itemize}}
 \newcommand{\resumeItemListStart}{\begin{itemize}[topsep=2pt, itemsep=-2pt, parsep=0pt]}
-\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-5pt}}
+\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-6pt}}
 
 \hypersetup{pdftitle={Matthew Ngoy - Industry Resume},pdfauthor={Matthew Ngoy}}
 \begin{document}
@@ -77,7 +77,7 @@
 
 \section{PROFESSIONAL SUMMARY}
  \begin{itemize}[leftmargin=0.15in, label={}, topsep=0pt, partopsep=0pt]
-    \small{\item{Computer science senior focused on cybersecurity, AI security research, and secure infrastructure; seeking a Summer 2027 internship.}}
+    \small{\item{CS senior focused on AI security and secure infrastructure; seeking a Summer 2027 internship.}}
  \end{itemize}
 
 \section{EDUCATION}
@@ -87,7 +87,7 @@
       {Bachelor of Science in Computer Science (Cybersecurity Option); GPA: 3.52}{Expected May 2027}
       \resumeItemListStart
         \resumeItem{\textbf{Relevant Courses:} Ethical Hacking; Digital Forensics; Computer Security; Cryptography \& Cryptanalysis; Data Structures; Analysis of Algorithms; Operating Systems; Database Management Systems.}
-        \resumeItem{\textbf{Honors \& Programs:} NSF IUSE Scholar (2x); CRA UR2PhD; CAHSI Travel Scholar; Dean's List; Upsilon Pi Epsilon; WiCyS Secretary; Young Envoys Scholarship.}
+        \resumeItem{\textbf{Honors \& Programs:} NSF IUSE Scholar (2025, 2026); CRA UR2PhD; CAHSI Travel Scholar; Dean's List; Upsilon Pi Epsilon; WELL Program; Young Envoys Scholarship.}
       \resumeItemListEnd
   \resumeSubHeadingListEnd
 
@@ -95,7 +95,7 @@
  \begin{itemize}[leftmargin=0.15in, label={}, topsep=0pt, partopsep=0pt]
     \small{\item{
      \textbf{Languages}{: Python, Java, JavaScript, SQL, PHP, PowerShell} \\
-     \textbf{Security}{: OWASP Top 10, MITRE ATLAS, OSINT, Nmap} \\
+     \textbf{Security}{: OWASP LLM Top 10, MITRE ATLAS, OSINT, Nmap} \\
      \textbf{AI \& LLM}{: Ollama, OpenAI API (fine-tuning), LLM-as-judge evaluation, Claude Code, Codex} \\
      \textbf{Tools \& Frameworks}{: Linux (Ubuntu, Kali), Docker, Git, MySQL, SQLite, Node.js, Arduino/ESP8266} \\
      \textbf{Coursework Exposure}{: TypeScript, Wireshark, Metasploit, Hashcat, Autopsy}
@@ -110,8 +110,9 @@
       {Kean University Center for Cybersecurity}{Union, NJ / Wenzhou, China / Beijing, China}
       \resumeItemListStart
         \resumeItem{Investigated nonprofit cyber incidents through OSINT for the Non-Profit Cyber Incident Repository, classifying reports by CIA-triad impact, CISA sector, and TAG Cyber taxonomy.}
-        \resumeItem{Designing solar-power and rack-energy monitoring for Mobile ACDC, the Center's portable teaching data center.}
-        \resumeItem{Built an Arduino/ESP8266 smart-home lab and configured classroom computers for the Port Authority of NY/NJ STEaM Camp, preparing 30 laptops.}
+        \resumeItem{Design solar-power and rack-energy monitoring for Mobile ACDC, the Center's portable teaching data center.}
+        \resumeItem{Built an Arduino/ESP8266 smart-home lab.}
+        \resumeItem{Configured classroom computers for the Port Authority of NY/NJ STEaM Camp, preparing 30 laptops.}
         \resumeItem{Taught cryptography, programming, and IP addressing across 12 lessons at STEaM Camp, reaching 60 high school students.}
       \resumeItemListEnd
 
@@ -119,7 +120,15 @@
       {Peer Mentor / Code Samurai}{Jan -- May 2025; Sep 2026 -- Present}
       {Kean University Department of Computer Science (\href{https://yoda.kean.edu/~samurai/}{\underline{Code Samurai}})}{Union, NJ}
       \resumeItemListStart
-        \resumeItem{Volunteered in Spring 2025 and returned as a paid mentor in Fall 2026, helping students work through Python, SQL, data structures, and debugging problems.}
+        \resumeItem{Guide students through Python, SQL, data structures, and debugging in one-on-one sessions; returned as a paid mentor after volunteering in Spring 2025.}
+      \resumeItemListEnd
+
+    \resumeSubheading
+      {Secretary}{2026}
+      {\href{https://kean.campuslabs.com/engage/organization/wicyskean}{Women in CyberSecurity (WiCyS), Kean University Chapter}}{Union, NJ}
+      \resumeItemListStart
+        \resumeItem{Coordinated guest-speaker scheduling and campus event planning for \href{https://kean.campuslabs.com/engage/event/12870047}{PHD4FREE!}, developing the research and graduate-funding event from August through October 2026.}
+        \resumeItem{Presented pathways into research, paid undergraduate programs, and graduate fellowships alongside Notre Dame PhD student \href{https://www.linkedin.com/in/demetrius-hernandez/}{Demetrius Hernandez}, reaching 15 attendees.}
       \resumeItemListEnd
 
     \resumeSubheading
@@ -137,14 +146,14 @@
       \resumeProjectHeading
           {\textbf{KEAN CTF 2027} $|$ \emph{Python, Docker, CTFd, Cloudflare Tunnel, GitHub Actions}}{Sep 2026 -- Present}
           \resumeItemListStart
-            \resumeItem{Co-developing a self-hosted college capture-the-flag competition with AI assistance and two teammates, using Docker-isolated challenges.}
-            \resumeItem{Co-developed challenges and solve scripts with AI assistance, including defenses against blind AI solvers.}
-            \resumeItem{Used AI-assisted development to automate challenge validation in CI and correct an unintended flag leak and broken hints during a player audit.}
+            \resumeItem{Co-develop Docker-isolated CTF challenges and solve scripts with AI assistance and two teammates, including defenses intended to resist blind AI solvers.}
+            \resumeItem{Automated challenge validation in GitHub Actions with AI assistance.}
+            \resumeItem{Corrected an unintended flag leak and broken hints through an AI-assisted player audit.}
           \resumeItemListEnd
       \resumeProjectHeading
           {\href{https://github.com/Vaunty/legacy-red-team-harness}{\textbf{LLM Red-Team Harness}} $|$ \emph{Python, SQLite, Ollama}}{June 2026}
           \resumeItemListStart
-            \resumeItem{Developed with AI assistance a pipeline for prompt-injection, jailbreak, and data-leak tests, recording model-judge verdicts and transcripts in SQLite and JSONL.}
+            \resumeItem{Built an AI-assisted pipeline for prompt-injection, jailbreak, and data-leak tests, saving model-judge verdicts and transcripts in SQLite and JSONL.}
           \resumeItemListEnd
     \resumeSubHeadingListEnd
 
@@ -153,12 +162,12 @@
     \resumeProjectHeading
       {\href{https://github.com/Vaunty/hadagent-verification-study}{\textbf{Independent Study, Red-Teaming HadAgent}} $|$ \emph{Advisor: \href{https://www.liboyang.org/}{\underline{Dr. Boyang Li}}}}{Sep 2026 -- Present}
       \resumeItemListStart
-        \resumeItem{Directed questions about verification guarantees and interpreted AI-designed and AI-run tests of a copied HadAgent prototype, identifying score-validation and model-execution gaps in local testing.}
+        \resumeItem{Investigated verification guarantees by directing and interpreting AI-designed, AI-run tests of a copied HadAgent prototype; identified local score-validation and model-execution gaps.}
       \resumeItemListEnd
     \resumeProjectHeading
-      {\textbf{Debate Coach LLM Evaluation} $|$ \emph{CRA UR2PhD; JavaScript, Node.js, OpenAI API}}{Feb -- Apr 2026}
+      {\href{https://github.com/ponzek/DebateCoach}{\textbf{Debate Coach LLM Evaluation}} $|$ \emph{CRA UR2PhD; JavaScript, Node.js, OpenAI API}}{Feb -- Apr 2026}
       \resumeItemListStart
-        \resumeItem{Helped fine-tune and evaluate LLM debate coaches with two teammates, sharing citation checks, participant interviews, and presentation; used an AI-assisted audit to investigate source reliability.}
+        \resumeItem{Helped fine-tune and evaluate LLM debate coaches with two teammates; contributed citation checks, participant interviews, and presentation, using an AI-assisted audit to examine source reliability.}
       \resumeItemListEnd
   \resumeSubHeadingListEnd
 
