@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Matthew Ngoy</title>
-  <meta name="description" content="Matthew Ngoy — resumes." />
+  <meta name="description" content="Matthew Ngoy â€” resumes." />
   <meta name="theme-color" content="#0a0a0a" />
   <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
   <style>
@@ -34,7 +34,7 @@
 
   <main class="relative mx-auto max-w-3xl px-3 py-4 sm:px-4 sm:py-6">
     <div id="pages" class="space-y-4"></div>
-    <p id="status" class="py-16 text-center text-sm text-neutral-500">Loading…</p>
+    <p id="status" class="py-16 text-center text-sm text-neutral-500">Loadingâ€¦</p>
   </main>
 
   <script type="module">
@@ -43,8 +43,8 @@
 
     // Keep in sync with the links in index.html.
     const RESUMES = {
-      industry: { label: "Industry", href: "resumes/Matthew_Ngoy_Resume_Industry.pdf?updated=2026-10-27" },
-      research: { label: "Research", href: "resumes/Matthew_Ngoy_Resume_Research.pdf?updated=2026-10-27" },
+      industry: { label: "Industry", href: "resumes/Matthew_Ngoy_Resume_Industry.pdf?updated=2026-10-27-coverage" },
+      research: { label: "Research", href: "resumes/Matthew_Ngoy_Resume_Research.pdf?updated=2026-10-27-coverage" },
     };
 
     const tabs = document.getElementById("tabs");
@@ -67,10 +67,10 @@
 
       for (const b of tabs.children) b.setAttribute("aria-selected", b.dataset.key === key);
       history.replaceState(null, "", `?v=${key}`);
-      document.title = `${resume.label} Resume — Matthew Ngoy`;
+      document.title = `${resume.label} Resume â€” Matthew Ngoy`;
       download.href = resume.href;
       pages.replaceChildren();
-      status.textContent = "Loading…";
+      status.textContent = "Loadingâ€¦";
       status.hidden = false;
 
       try {
