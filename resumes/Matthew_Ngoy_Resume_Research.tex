@@ -34,7 +34,7 @@
 \titleformat{\section}{
   \bfseries\scshape\raggedright\large
 }{}{0em}{}[\color{black}\titlerule]
-\titlespacing*{\section}{0pt}{3pt}{2pt}
+\titlespacing*{\section}{0pt}{3pt}{1pt}
 
 \pdfgentounicode=1
 
@@ -45,7 +45,7 @@
 \newcommand{\resumeSubheading}[4]{
   \vspace{-1pt}\item
     \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
-      \textbf{#1} & #2 \\
+      {\normalsize\textbf{#1}} & {\normalsize #2} \\
       \textit{\small#3} & \textit{\small #4} \\
     \end{tabular*}\vspace{-7pt}
 }
@@ -59,10 +59,10 @@
 
 \renewcommand\labelitemii{$\vcenter{\hbox{\tiny$\bullet$}}$}
 
-\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=0.15in, label={}, topsep=0pt, partopsep=0pt, itemsep=1pt]}
+\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=0.15in, label={}, topsep=0pt, partopsep=0pt, itemsep=0pt]\small}
 \newcommand{\resumeSubHeadingListEnd}{\end{itemize}}
 \newcommand{\resumeItemListStart}{\begin{itemize}[topsep=2pt, itemsep=-2pt, parsep=0pt]}
-\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-5pt}}
+\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-6pt}}
 
 \hypersetup{pdftitle={Matthew Ngoy - Research Resume},pdfauthor={Matthew Ngoy}}
 \begin{document}
@@ -76,7 +76,7 @@
 \end{center}\vspace{-4pt}
 
 \section{Summary}
-  \small{Computer science senior preparing for PhD research in AI security, focused on LLM red-teaming, jailbreak robustness, and verification of AI computation.}
+  {\small Computer science senior preparing for PhD research in AI security, focused on LLM red-teaming, jailbreak robustness, and verification of AI computation.\par}
 
 \section{Education}
   \resumeSubHeadingListStart
@@ -89,7 +89,7 @@
   \resumeSubHeadingListEnd
 
 \section{Technical Skills}
- \begin{itemize}[leftmargin=0.15in, label={}, topsep=1pt, itemsep=0pt]
+ \begin{itemize}[leftmargin=0.15in, label={}, topsep=0pt, partopsep=0pt, parsep=0pt, itemsep=0pt]
     \small{\item{
      \textbf{Languages}{: Python, Java, JavaScript, SQL, PHP, PowerShell} \\
      \textbf{Research \& Security}{: LLM benchmarking, adversarial testing, citation checking, OSINT, OWASP LLM Top 10, MITRE ATLAS} \\
